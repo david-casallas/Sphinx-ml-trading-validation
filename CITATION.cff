@@ -4,6 +4,7 @@ title: "Sphinx: an ML trading system with full validation and a negative-result 
 authors:
   - family-names: "Casallas"
     given-names: "Juan David"
+    orcid: "https://orcid.org/0009-0000-3108-8058"
 version: 1.0.0
 license: MIT
 repository-code: "https://github.com/david-casallas/Sphinx-ml-trading-validation"
