@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Sphinx: an ML trading system with full validation and a negative-result report"
+authors:
+  - family-names: "Casallas"
+    given-names: "Juan David"
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/david-casallas/Sphinx-ml-trading-validation"
