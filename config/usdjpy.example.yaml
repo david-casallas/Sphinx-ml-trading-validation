@@ -1,0 +1,61 @@
+# =====================================================================
+# Config for USDJPY 15M trading bot
+# =====================================================================
+
+# MT5 account credentials
+account:
+  login: 0                            # ← CHANGE: your account number
+  password: ""                        # ← CHANGE: your account password
+  server: ""                          # ← CHANGE: e.g. Pepperstone-Demo
+  path: null                          # null = auto-detect MT5 terminal, or specify full path
+
+# Model
+model:
+  pkl: ../outputs/models/usdjpy_15m.pkl
+
+# Trade execution
+trade:
+  magic: 250603                       # unique magic number for this strategy
+                                      # (used by trade_manager to identify this bot's positions)
+
+# Risk management & sizing
+# ─────────────────────────────────────────────────────────────────────
+# initial_equity: strategy-level capital. NOT total account balance.
+#                  If your account has $5000 but you allocate $1000 to this bot, set 1000.
+# base_mpo: base margin per operation in USD when Mult=1.
+#           Increase = more aggressive sizing. Decrease = more conservative.
+# leverage: broker leverage (USDJPY usually 1:100)
+# contract_size: notional value of 1 lot. 100000 for USDJPY (standard forex).
+# ─────────────────────────────────────────────────────────────────────
+risk_management:
+  initial_equity: 1000.0              # ← TUNE: your strategy capital
+  base_mpo: 20.0                      # ← TUNE: USD margin per trade at Mult=1
+  leverage: 100.0                     # ← TUNE: confirm with broker
+  contract_size: 100000.0             # 100k for USDJPY standard forex
+  
+  # Mult formula (from the development position-sizing simulation; not part of this repository)
+  base_for_mult: 1.25
+  max_n: 6.0
+  min_mult: 1.0
+  min_mult_downside: 0.3
+  downside_beta: 0.5
+  
+  # Circuit breaker (same rule as notebook 03, cell 12; matches scripts/export_model.py)
+  dd_threshold: -0.05                 # -5% drawdown triggers cooldown
+  cooldown_hours: 4.0                 # pause new trades for 4h after trigger
+  
+  # Lot size constraints (broker-specific)
+  min_lot: 0.01
+  max_lot: 100.0
+  lot_step: 0.01
+
+# Regime filter (VXX-based, from the project's US500 phase). The USDJPY model does not
+# use it, and the exported model carries no filter parameters, so keep it disabled.
+regime_filter:
+  enabled: false
+
+# Logs and state files
+logs:
+  file: ../logs/bot.log
+  state_file: ../data/trade_state.json
+  risk_state_file: ../data/risk_state.json
