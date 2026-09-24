@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22930381.svg)](https://doi.org/10.5281/zenodo.22930381)
+
 # Sphinx — An ML Trading System and the Validation Framework That Killed It
 
 email: juan.casallas@correounivalle.edu.co
